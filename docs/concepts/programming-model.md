@@ -15,7 +15,7 @@ nav-parent_id: concepts
 
 Flink offers different levels of abstraction to develop streaming/batch applications.
 
-![Programming levels of abstraction](../fig/levels_of_abstraction.svg)
+<img src="../fig/levels_of_abstraction.svg" alt="Programming levels of abstraction" class="offset" width="80%" />
 
 -   The lowest level abstraction offers **stateful streaming**. It is embedded into the [DataStream API]({{site.baseurl}}/dev/datastream_api.html) via the [Process Function]({{site.baseurl}}/dev/stream/operators/process_function.html). It allows users freely process events from one or more streams, and use consistent fault tolerant _state_. Users can also register event time and processing time callbacks, allowing programs to realize sophisticated computations.
 
@@ -35,7 +35,7 @@ The basic building blocks of Flink programs are **streams** and **transformation
 
 When executed, Flink programs are mapped to **streaming dataflows**, consisting of **streams** and transformation **operators**. Each dataflow starts with one or more **sources** and ends in one or more **sinks**. The dataflows resemble arbitrary **directed acyclic graphs** _(DAGs)_. Although special forms of cycles are permitted via _iteration_ constructs, we will gloss over this for simplicity.
 
-![A DataStream program, and its dataflow.](../fig/program_dataflow.svg)
+<img src="../fig/program_dataflow.svg" alt="A DataStream program, and its dataflow." class="offset" width="80%" />
 
 Often there is a one-to-one correspondence between the transformations in the programs and the operators in the dataflow. Sometimes, one transformation may consist of multiple transformation operators.
 
@@ -49,7 +49,7 @@ Programs in Flink are inherently parallel and distributed. During execution, a _
 
 The number of operator subtasks is the **parallelism** of that particular operator. The parallelism of a stream is always that of its producing operator. Different operators of the same program may have different levels of parallelism.
 
-![A parallel dataflow](../fig/parallel_dataflow.svg)
+<img src="../fig/parallel_dataflow.svg" alt="A parallel dataflow" class="offset" width="80%" />
 
 Streams can transport data between two operators in a _one-to-one_ (or _forwarding_) pattern, or in a _redistributing_ pattern:
 
@@ -67,7 +67,7 @@ Aggregating events (e.g., counts, sums) works differently on streams than in bat
 
 Windows can be _time driven_ (example: every 30 seconds) or _data driven_ (example: every 100 elements). You typically distinguish different types of windows, such as _tumbling windows_ (no overlap), _sliding windows_ (with overlap), and _session windows_ (punctuated by a gap of inactivity).
 
-![Time- and Count Windows](../fig/windows.svg)
+<img src="../fig/windows.svg" alt="Time- and Count Windows" class="offset" width="80%" />
 
 You can find more window examples in this [blog post](https://flink.apache.org/news/2015/12/04/Introducing-windows.html), and more details are in the [window docs]({{site.baseurl}}/dev/stream/operators/windows.html).
 
@@ -83,7 +83,7 @@ Time in a streaming program (for example to define windows) can refer to three d
 
 -   **Processing Time** is the local time at each operator that performs a time-based operation.
 
-![Event Time, Ingestion Time, and Processing Time](../fig/event_ingestion_processing_time.svg)
+<img src="../fig/event_ingestion_processing_time.svg" alt="Event Time, Ingestion Time, and Processing Time" class="offset" width="80%" />
 
 You can find more details on how to handle time in the [event time]({{ site.baseurl }}/dev/event_time.html) documentation.
 
@@ -95,7 +95,7 @@ While many operations in a dataflow look at one individual _event at a time_ (fo
 
 The state of stateful operations is maintained in a form of embedded key/value store. The state is partitioned and distributed strictly together with the streams that are read by the stateful operators. Hence, access to the key/value state is only possible on _keyed streams_, after a _keyBy()_ function, and is restricted to the values associated with the current event's key. Aligning the keys of streams and state makes sure that all state updates are local operations, guaranteeing consistency without transaction overhead. This alignment also allows Flink to redistribute the state and adjust the stream partitioning transparently.
 
-![State and Partitioning](../fig/state_partitioning.svg)
+<img src="../fig/state_partitioning.svg" alt="State and Partitioning" class="offset" width="50%" />
 
 You can find more information in the [state]({{site.baseurl}}/dev/stream/state/index.html) documentation.
 
